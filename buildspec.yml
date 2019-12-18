@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-     runtime-versions:
+    runtime-versions:
       python: 2.7
     commands:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
