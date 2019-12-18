@@ -4,5 +4,10 @@
   "Image": {
 	"Name": "DOCKER_IMAGE_NAME",
   	"Update": "false"
-  }
+  },
+   "Ports": [
+    {
+      "ContainerPort": "8000"
+    }
+  ]
 }
