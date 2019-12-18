@@ -107,7 +107,7 @@ welcome = """
 </head>
 <body id="sample">
   <div class="textColumn">
-    <h1>Promact</h1>
+    <h1>Vadodara</h1>
     <p>Your Docker Container is now running in Elastic Beanstalk on your own dedicated environment in the AWS Cloud.</p>
   </div>
   
