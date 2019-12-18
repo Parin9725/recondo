@@ -2,6 +2,7 @@
   "AWSEBDockerrunVersion": "1",
   "Logging": "/tmp/sample-app",
   "Image": {
+	"Name": "DOCKER_IMAGE_NAME",
   	"Update": "false"
   }
 }

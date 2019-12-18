@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - REPOSITORY_URI=015072495129.dkr.ecr.ap-south-1.amazonaws.com/recondo
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - sed -i -e "s/DOCKER_IMAGE_NAME/$REPOSITORY_URI:$IMAGE_TAG/g" Dockerrun.aws.json
+        #- cd ValueScout/ValueScout.Web
+        #- dotnet publish -c Release -o publish
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+        #- docker build -t $IMAGE_REPO_NAME:latest .
+        #- docker tag $IMAGE_REPO_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+        #- docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+cache:
+    paths:
+      - '/usr/local/share/.cache/yarn/**/*'
+artifacts:
+    files: 
+      - Dockerrun.aws.json
+        #- .ebextensions/*
