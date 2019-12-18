@@ -11,7 +11,7 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - sed -i -e "s/DOCKER_IMAGE_NAME/$REPOSITORY_URI:$IMAGE_TAG/g" Dockerrun.aws.json
+      - sed -i -e "s#DOCKER_IMAGE_NAME#$REPOSITORY_URI:$IMAGE_TAG#g" Dockerrun.aws.json
         #- cd ValueScout/ValueScout.Web
         #- dotnet publish -c Release -o publish
       - docker build -t $REPOSITORY_URI:latest .

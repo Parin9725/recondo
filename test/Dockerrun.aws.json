@@ -1,0 +1,8 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Logging": "/tmp/sample-app",
+  "Image": {
+	"Name": "015072495129.dkr.ecr.ap-south-1.amazonaws.com/recondo:9725",
+  	"Update": "false"
+  }
+}
